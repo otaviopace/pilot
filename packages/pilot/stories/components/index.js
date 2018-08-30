@@ -34,6 +34,7 @@ import Loader from './Loader'
 import Message from './Message'
 import MessageActions from './MessageActions'
 import PasswordInput from './PasswordInput'
+import ConfirmModal from './ConfirmModal'
 import WithLoader from './withLoader'
 import WithSpinner from './withSpinner'
 
@@ -71,6 +72,7 @@ storiesOf('Components|Custom components', module)
   .add('Message with actions', () => <MessageActions />)
   .add('Password Input', () => <PasswordInput />)
   .add('TotalDisplay', () => <TotalDisplay />)
+  .add('Confirm Modal', () => <ConfirmModal />)
 
 storiesOf('Components|High Order Components', module)
   .add('with loader', () => <WithLoader />)
