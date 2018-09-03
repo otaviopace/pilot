@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
+
 import {
   complement,
   either,
@@ -16,6 +17,7 @@ import {
   take,
   when,
 } from 'ramda'
+
 import {
   Button,
   Card,
