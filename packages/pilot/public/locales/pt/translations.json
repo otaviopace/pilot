@@ -48,6 +48,7 @@
   "empty_password": "Senha não informada",
   "enter_password": "Digite sua senha",
   "error": "Erro",
+  "unknown_error": "Erro desconhecido",
   "export": "Exportar",
   "export_table": "Exportar tabela",
   "export_to": "Exportar para:",
