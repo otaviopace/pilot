@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import {
   Col,
   FormDropdown,
   FormInput,
-  Grid,
   Row,
 } from 'former-kit'
 
@@ -27,9 +26,9 @@ const AddAccountContent = ({ t }) => {
   }))
 
   return (
-    <Grid>
+    <Fragment>
       <Row>
-        <Col tv={2} desk={4} tablet={5} palm={8}>
+        <Col tv={3} desk={4} tablet={5} palm={8}>
           <SearchableDropdown
             name="bank"
             placeholder={t('pages.add_recipient.type_bank_name')}
@@ -101,7 +100,7 @@ const AddAccountContent = ({ t }) => {
           />
         </Col>
       </Row>
-    </Grid>
+    </Fragment>
   )
 }
 
