@@ -104,9 +104,9 @@ const getDefaultColumns = ({
     title: t('pages.recipients.bank_account_document_number'),
   },
   {
-    accessor: ['created_at'],
+    accessor: ['date_created'],
     orderable: false,
-    renderer: pipe(prop('created_at'), formatDate),
+    renderer: pipe(prop('date_created'), formatDate),
     title: t('pages.recipients.date_created'),
   },
   {
