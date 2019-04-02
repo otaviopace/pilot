@@ -38,6 +38,8 @@ class RecipientDetails extends Component {
       t,
     } = this.props
 
+    const { selected } = this.state
+
     return (
       <Card>
         <CardContent>
@@ -73,30 +75,35 @@ class RecipientDetails extends Component {
               </span>
             </div>
           </div>
+        </CardContent>
+        <CardContent>
           <TabBar
-            selected={this.state.selected}
+            selected={selected}
             onTabChange={this.handleChange}
           >
-            <TabItem text={t('pages.recipients.balance')}>
-              <Balance
-                {...balanceProps}
-                t={t}
-              />
-            </TabItem>
-            <TabItem text={t('pages.recipients.configurations')}>
-              <Configuration
-                {...configurationProps}
-                t={t}
-              />
-            </TabItem>
-            <TabItem text={t('pages.recipients.more_information')}>
-              <Information
-                {...informationProps}
-                t={t}
-              />
-            </TabItem>
+            <TabItem text={t('pages.recipients.balance')} />
+            <TabItem text={t('pages.recipients.configurations')} />
+            <TabItem text={t('pages.recipients.more_information')} />
           </TabBar>
         </CardContent>
+        {selected === 0 &&
+          <Balance
+            {...balanceProps}
+            t={t}
+          />
+        }
+        {selected === 1 &&
+          <Configuration
+            {...configurationProps}
+            t={t}
+          />
+        }
+        {selected === 2 &&
+          <Information
+            {...informationProps}
+            t={t}
+          />
+        }
       </Card>
     )
   }
@@ -117,6 +124,7 @@ RecipientDetails.propTypes = {
     name: PropTypes.string,
     status: PropTypes.string,
   }).isRequired,
+  selected: PropTypes.number.isRequired,
   t: PropTypes.func.isRequired,
 }
 
