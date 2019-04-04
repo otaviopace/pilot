@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { propOr, __ } from 'ramda'
+// import { propOr, __ } from 'ramda'
 
 import {
   Button,
-  Flexbox,
-  Popover,
-  PopoverContent,
+  // Flexbox,
+  // Popover,
+  // PopoverContent,
   Sidebar,
   SidebarHeader,
   SidebarLink,
@@ -14,23 +14,23 @@ import {
 } from 'former-kit'
 
 import IconMenu from 'emblematic-icons/svg/Menu32.svg'
-import IconWallet from 'emblematic-icons/svg/Wallet32.svg'
+// import IconWallet from 'emblematic-icons/svg/Wallet32.svg'
 
-import style from './style.css'
+// import style from './style.css'
 
-import SidebarSections from '../../components/SidebarSections'
-import SidebarSummary from '../../components/SidebarSummary'
-import formatDecimalCurrency from '../../formatters/decimalCurrency'
-import environment from '../../environment'
+// import SidebarSections from '../../components/SidebarSections'
+// import SidebarSummary from '../../components/SidebarSummary'
+// import formatDecimalCurrency from '../../formatters/decimalCurrency'
+// import environment from '../../environment'
 
-const MINIMUM_API_VALUE = 100
+// const MINIMUM_API_VALUE = 100
 
 class SidebarContainer extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       collapsed: false,
-      summaryCollapsed: true,
+      // summaryCollapsed: true,
     }
 
     this.handleToggleSidebar = this.handleToggleSidebar.bind(this)
@@ -41,50 +41,63 @@ class SidebarContainer extends React.Component {
     this.setState({ collapsed: !collapsed })
   }
 
-  renderSections () {
-    const {
-      // This block of code is commented because of issue #1159 (https://github.com/pagarme/pilot/issues/1159)
-      // It was commented on to remove the anticipation limits call on Balance page
-      // This code will be used again in the future when ATLAS project implements the anticipation flow
-      // More details in issue #1159
-      // anticipationLimit,
-      balance,
-      onWithdraw,
-      t,
-      transfersPricing,
-    } = this.props
+  // renderSections () {
+  //   const {
+  //     // This block of code is commented because of issue #1159 (https://github.com/pagarme/pilot/issues/1159)
+  //     // It was commented on to remove the anticipation limits call on Balance page
+  //     // This code will be used again in the future when ATLAS project implements the anticipation flow
+  //     // More details in issue #1159
+  //     // anticipationLimit,
+  //     balance,
+  //     onAnticipate,
+  //     onWithdraw,
+  //     t,
+  //     transfersPricing,
+  //   } = this.props
 
-    const getFrombalance = propOr(null, __, balance)
-    const available = getFrombalance('available')
+  //   const getFrombalance = propOr(null, __, balance)
+  //   const available = getFrombalance('available')
+  //   const waitingFunds = getFrombalance('waitingFunds')
 
-    const minimumWithdrawalValue = transfersPricing.ted + MINIMUM_API_VALUE
+  //   const minimumWithdrawalValue = transfersPricing.ted + MINIMUM_API_VALUE
 
-    return (
-      <SidebarSections
-        sections={[
-          {
-            action: onWithdraw,
-            actionTitle: t('pages.sidebar.withdraw'),
-            disabled: available <= minimumWithdrawalValue,
-            title: t('pages.sidebar.available'),
-            value: <span><small>{t('pages.sidebar.currency_symbol')}</small> {formatDecimalCurrency(available)}</span>,
-          },
-        ]}
-      />
-    )
-  }
+  //   return (
+  //     <SidebarSections
+  //       sections={[
+  //         {
+  //           action: onWithdraw,
+  //           actionTitle: t('pages.sidebar.withdraw'),
+  //           disabled: available <= minimumWithdrawalValue,
+  //           title: t('pages.sidebar.available'),
+  //           value: <span><small>{t('pages.sidebar.currency_symbol')}</small> {formatDecimalCurrency(available)}</span>,
+  //         },
+  //         {
+  //           action: onAnticipate,
+  //           actionTitle: t('pages.sidebar.anticipation'),
+  //           // This block of code is commented because of issue #1159 (https://github.com/pagarme/pilot/issues/1159)
+  //           // It was commented on to remove the anticipation limits call on Balance page
+  //           // This code will be used again in the future when ATLAS project implements the anticipation flow
+  //           // More details in issue #1159
+  //           // disabled: anticipationLimit < MINIMUM_API_VALUE,
+  //           title: t('pages.sidebar.waiting_funds'),
+  //           value: <span><small>{t('pages.sidebar.currency_symbol')}</small> {formatDecimalCurrency(waitingFunds)}</span>,
+  //         },
+  //       ]}
+  //     />
+  //   )
+  // }
 
   render () {
     const {
       collapsed,
-      summaryCollapsed,
+      // summaryCollapsed,
     } = this.state
     const {
-      companyName,
+      // companyName,
       links,
       logo: Logo,
       onLinkClick,
-      sessionId,
+      // sessionId,
       t,
     } = this.props
 
@@ -101,7 +114,7 @@ class SidebarContainer extends React.Component {
           />
         </SidebarHeader>
 
-        {!collapsed &&
+        {/* {!collapsed &&
           <SidebarSummary
             collapsed={summaryCollapsed}
             onClick={() => this.setState({
@@ -116,9 +129,9 @@ class SidebarContainer extends React.Component {
           >
             {this.renderSections()}
           </SidebarSummary>
-        }
+        } */}
 
-        {collapsed &&
+        {/* {collapsed &&
           <Popover
             base="dark"
             content={
@@ -137,7 +150,7 @@ class SidebarContainer extends React.Component {
               />
             </SidebarLinks>
           </Popover>
-        }
+        } */}
 
         <SidebarLinks>
           {links.map(({
@@ -157,7 +170,7 @@ class SidebarContainer extends React.Component {
             />
           ))}
         </SidebarLinks>
-        {!collapsed &&
+        {/* {!collapsed &&
           <Flexbox
             className={style.backToOldVersion}
             justifyContent="center"
@@ -173,7 +186,7 @@ class SidebarContainer extends React.Component {
               {t('pages.sidebar.back_to_old_version')}
             </Button>
           </Flexbox>
-        }
+        } */}
       </Sidebar>
     )
   }
@@ -185,10 +198,11 @@ SidebarContainer.propTypes = {
   // This code will be used again in the future when ATLAS project implements the anticipation flow
   // More details in issue #1159
   // anticipationLimit: PropTypes.number,
-  balance: PropTypes.shape({
-    available: PropTypes.number,
-  }).isRequired,
-  companyName: PropTypes.string,
+  // balance: PropTypes.shape({
+  //   available: PropTypes.number,
+  //   waitingFunds: PropTypes.number,
+  // }).isRequired,
+  // companyName: PropTypes.string,
   links: PropTypes.arrayOf(PropTypes.shape({
     active: PropTypes.bool,
     component: PropTypes.func,
@@ -197,13 +211,14 @@ SidebarContainer.propTypes = {
     title: PropTypes.string,
   })).isRequired,
   logo: PropTypes.func.isRequired,
+  // onAnticipate: PropTypes.func,
   onLinkClick: PropTypes.func.isRequired,
-  onWithdraw: PropTypes.func,
-  sessionId: PropTypes.string,
+  // onWithdraw: PropTypes.func,
+  // sessionId: PropTypes.string,
   t: PropTypes.func.isRequired,
-  transfersPricing: PropTypes.shape({
-    ted: PropTypes.number,
-  }),
+  // transfersPricing: PropTypes.shape({
+  //   ted: PropTypes.number,
+  // }),
 }
 
 SidebarContainer.defaultProps = {
@@ -212,10 +227,11 @@ SidebarContainer.defaultProps = {
   // This code will be used again in the future when ATLAS project implements the anticipation flow
   // More details in issue #1159
   // anticipationLimit: null,
-  companyName: '',
-  onWithdraw: null,
-  sessionId: '',
-  transfersPricing: {},
+  // companyName: '',
+  // onAnticipate: null,
+  // onWithdraw: null,
+  // sessionId: '',
+  // transfersPricing: {},
 }
 
 export default SidebarContainer
