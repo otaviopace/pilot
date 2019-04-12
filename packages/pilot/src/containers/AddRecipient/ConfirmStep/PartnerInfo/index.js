@@ -65,14 +65,14 @@ const PartnerInfo = ({
 
 const partnerPropTypes = PropTypes.shape({
   cpf: PropTypes.string,
+  email: PropTypes.string,
   name: PropTypes.string,
-  phone: PropTypes.string,
 })
 
 const partnerDefaultTypes = {
   cpf: '',
+  email: '',
   name: '',
-  phone: '',
 }
 
 PartnerInfo.propTypes = {
