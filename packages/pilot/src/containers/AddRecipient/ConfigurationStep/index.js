@@ -199,6 +199,7 @@ class ConfigurationsStep extends Component {
           </CardActions>
         </Form>
         <HelpModal
+          anticipationModel={data.anticipationModel}
           isOpen={openedModal}
           onExit={this.handleCloseHelpModal}
           title={t('pages.recipient_detail.title_modal')}

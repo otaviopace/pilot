@@ -231,12 +231,14 @@ class RecipientDetailConfig extends Component {
       accounts,
       t,
     } = this.props
+
     const {
       anticipation,
       bankAccount,
       openedModal,
       transfer,
     } = this.state
+
     return (
       <Fragment>
         <RecipientItem
@@ -290,6 +292,7 @@ class RecipientDetailConfig extends Component {
           />
         </RecipientItem>
         <HelpModal
+          anticipationModel={anticipation.anticipationModel}
           isOpen={openedModal}
           onExit={this.handleCloseHelpModal}
           title={t('pages.recipient_detail.title_modal')}
