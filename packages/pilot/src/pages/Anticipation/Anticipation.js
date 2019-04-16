@@ -684,16 +684,7 @@ class Anticipation extends Component {
   }
 
   goToBalance () {
-    const {
-      recipient: {
-        id,
-      },
-    } = this.state
-
-    const {
-      history,
-    } = this.props
-    history.push(`/balance/${id}`)
+    this.props.history.goBack()
   }
 
   updateAnticipation (value) {

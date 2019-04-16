@@ -50,6 +50,7 @@ class WithdrawFormContainer extends Component {
   renderCardActions () {
     const {
       maximum,
+      onBack,
       requested,
       t,
       transferCost,
@@ -57,6 +58,13 @@ class WithdrawFormContainer extends Component {
 
     return (
       <CardActions>
+        <Button
+          type="button"
+          onClick={onBack}
+          fill="outline"
+        >
+          {t('pages.withdraw.back')}
+        </Button>
         <Button
           disabled={
             requested > maximum ||
@@ -241,6 +249,7 @@ WithdrawFormContainer.propTypes = {
   available: PropTypes.number,
   date: PropTypes.instanceOf(moment).isRequired,
   maximum: PropTypes.number,
+  onBack: PropTypes.func.isRequired,
   onRequestedChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   requested: PropTypes.number.isRequired,

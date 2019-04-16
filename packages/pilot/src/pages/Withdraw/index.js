@@ -115,7 +115,7 @@ class Withdraw extends Component {
     this.handleRequestChange = this.handleRequestChange.bind(this)
     this.handleTryAgain = this.handleTryAgain.bind(this)
     this.getTransferCost = this.getTransferCost.bind(this)
-    this.goToBalance = this.goToBalance.bind(this)
+    this.goToPreviousPage = this.goToPreviousPage.bind(this)
   }
 
   componentDidMount () {
@@ -204,6 +204,10 @@ class Withdraw extends Component {
     })
   }
 
+  goToPreviousPage () {
+    this.props.history.goBack()
+  }
+
   handleConfirmationConfirm (password) {
     const {
       client,
@@ -255,19 +259,19 @@ class Withdraw extends Component {
     this.goTo('data', 'current')
   }
 
-  goToBalance () {
-    const {
-      recipient: {
-        id,
-      },
-    } = this.state
+  // goToBalance () {
+  //   const {
+  //     recipient: {
+  //       id,
+  //     },
+  //   } = this.state
 
-    const {
-      history,
-    } = this.props
+  //   const {
+  //     history,
+  //   } = this.props
 
-    history.push(`/balance/${id}`)
-  }
+  //   history.push(`/balance/${id}`)
+  // }
 
   render () {
     const {
@@ -299,7 +303,7 @@ class Withdraw extends Component {
             date={moment()}
             disabled={confirmationDisabledButtons}
             maximum={getAvailableTransferAmount(recipient)}
-            onCancel={this.goToBalance}
+            onCancel={this.goToPreviousPage}
             onConfirmationConfirm={this.handleConfirmationConfirm}
             onConfirmationReturn={() => this.goTo('data', 'current')}
             onFormSubmit={() => this.goTo('confirmation', 'current')}
