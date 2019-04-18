@@ -286,8 +286,11 @@ class RecipientBalance extends Component {
       currentPage,
       dates,
       disabled,
+      exporting,
+      loading,
       onAnticipationClick,
       onCancelRequestClick,
+      onExport,
       onWithdrawClick,
       search: {
         operations,
@@ -422,6 +425,7 @@ class RecipientBalance extends Component {
                       <BalanceSummary
                         amount={this.getSummaryTotal()}
                         dates={dates}
+                        loading={loading}
                       />
                     </CardContent>
                   </Card>
@@ -430,13 +434,14 @@ class RecipientBalance extends Component {
                   columns={translateColumns(getColumns(typesLabels))}
                   currentPage={currentPage}
                   disabled={disabled}
+                  exporting={exporting}
                   emptyMessage={t('models.operations.empty_message')}
                   exportLabel={t('models.operations.export')}
                   loading={disabled}
                   ofLabel={t('of')}
                   onExport={() => null}
                   onPageChange={this.handleOperationsPageChange}
-                  onExportData={() => null}
+                  onExportData={onExport}
                   rows={operations.rows}
                   subtitle={
                     <span>
@@ -445,6 +450,7 @@ class RecipientBalance extends Component {
                       {t('pages.balance.releases')}
                     </span>
                   }
+                  t={t}
                   title={t('pages.balance.operations_title')}
                   totalPages={operations.count}
                 />
@@ -486,8 +492,11 @@ RecipientBalance.propTypes = {
     start: PropTypes.instanceOf(moment),
   }).isRequired,
   disabled: PropTypes.bool.isRequired,
+  exporting: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
   onAnticipationClick: PropTypes.func.isRequired,
   onCancelRequestClick: PropTypes.func,
+  onExport: PropTypes.func.isRequired,
   onFilterClick: PropTypes.func.isRequired,
   onPageChange: PropTypes.func.isRequired,
   onWithdrawClick: PropTypes.func.isRequired,

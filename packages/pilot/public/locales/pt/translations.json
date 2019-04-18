@@ -681,6 +681,14 @@
       "anticipation_call": "Antecipe e receba antes! Veja sua disponibilidade:",
       "automatic_anticipation": "Modelo de antecipação automática configurado.",
       "bank_code": "Banco",
+      "export": {
+        "title": "Exportar tabela",
+        "subtitle": "Exportar para:",
+        "type": {
+          "csv": "CSV",
+          "excel": "Excel"
+        }
+      },
       "id": "id do recebedor",
       "invalid_recipient": "Você não possui um recebedor padrão configurado para este ambiente",
       "no_anticipation": "Não há valores disponíveis para antecipação.",

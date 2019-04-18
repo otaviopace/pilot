@@ -33,6 +33,7 @@ class RecipientDetails extends Component {
     const {
       balanceProps,
       configurationProps,
+      exporting,
       informationProps,
       recipient,
       t,
@@ -89,6 +90,7 @@ class RecipientDetails extends Component {
         {selected === 0 &&
           <Balance
             {...balanceProps}
+            exporting={exporting}
             t={t}
           />
         }
@@ -116,6 +118,7 @@ const balanceProps = omit(['t'], Balance.propTypes)
 RecipientDetails.propTypes = {
   balanceProps: PropTypes.shape(balanceProps).isRequired,
   configurationProps: PropTypes.shape(configProps).isRequired,
+  exporting: PropTypes.bool.isRequired,
   informationProps: PropTypes.shape(infoProps).isRequired,
   recipient: PropTypes.shape({
     createDate: PropTypes.string,
@@ -124,8 +127,12 @@ RecipientDetails.propTypes = {
     name: PropTypes.string,
     status: PropTypes.string,
   }).isRequired,
-  selected: PropTypes.number.isRequired,
+  selected: PropTypes.number,
   t: PropTypes.func.isRequired,
+}
+
+RecipientDetails.defaultProps = {
+  selected: 0,
 }
 
 export default RecipientDetails

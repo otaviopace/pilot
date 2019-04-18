@@ -36,6 +36,31 @@ const enhanced = compose(
   withRouter
 )
 
+const handleExportDataSuccess = (res, format) => {
+  /* eslint-disable no-undef */
+  let contentType
+  if (format === 'xlsx') {
+    contentType = 'application/ms-excel'
+  } else {
+    contentType = 'text/csv;charset=utf-8'
+  }
+
+  const blob = new Blob([res], { type: contentType })
+  const filename = `PagarMe_Extrato_${moment().format('DD/MM/YYYY')}.${format}`
+
+  const downloadLink = document.createElement('a')
+  downloadLink.target = '_blank'
+  downloadLink.download = filename
+  const URL = window.URL || window.webkitURL
+  const downloadUrl = URL.createObjectURL(blob)
+  downloadLink.href = downloadUrl
+  document.body.append(downloadLink)
+  downloadLink.click()
+  document.body.removeChild(downloadLink)
+  URL.revokeObjectURL(downloadUrl)
+  /* eslint-enable no-undef */
+}
+
 class DetailRecipientPage extends Component {
   constructor (props) {
     super(props)
@@ -49,6 +74,7 @@ class DetailRecipientPage extends Component {
         end: moment(),
         start: moment().subtract(1, 'month'),
       },
+      exporting: false,
       loading: true,
       pageError: false,
       recipientData: {},
@@ -64,6 +90,7 @@ class DetailRecipientPage extends Component {
     this.fetchRecipientData = this.fetchRecipientData.bind(this)
     this.handleAnticipationCancel = this.handleAnticipationCancel.bind(this)
     this.handleDateFilter = this.handleDateFilter.bind(this)
+    this.handleExportData = this.handleExportData.bind(this)
     this.handlePageChange = this.handlePageChange.bind(this)
     this.handleSaveAnticipation = this.handleSaveAnticipation.bind(this)
     this.handleSaveBankAccount = this.handleSaveBankAccount.bind(this)
@@ -223,6 +250,30 @@ class DetailRecipientPage extends Component {
         this.setState({
           pageError,
         })
+      })
+  }
+
+  handleExportData (format) {
+    this.setState({ exporting: true })
+
+    const { client } = this.props
+    const { dates } = this.state
+    const startDate = dates.start.format('x')
+    const endDate = dates.end.format('x')
+
+    const { id: recipientId } = this.props.match.params
+    return client
+      .withVersion('2018-09-10')
+      .balanceOperations
+      .find({
+        endDate,
+        format,
+        recipientId,
+        startDate,
+      })
+      .then((res) => {
+        this.setState({ exporting: false })
+        handleExportDataSuccess(res, format)
       })
   }
 
@@ -395,6 +446,7 @@ class DetailRecipientPage extends Component {
       balance,
       currentPage,
       dates,
+      exporting,
       loading,
       pageError,
       recipientData,
@@ -456,8 +508,11 @@ class DetailRecipientPage extends Component {
             currentPage,
             dates,
             disabled: loading,
+            exporting,
+            loading,
             onAnticipationClick: this.sendToAnticipationPage,
             onCancelRequestClick: this.showCancelAnticipationModal,
+            onExport: this.handleExportData,
             onFilterClick: this.handleDateFilter,
             onPageChange: this.handlePageChange,
             onWithdrawClick: this.sendToWithdrawPage,
@@ -469,6 +524,7 @@ class DetailRecipientPage extends Component {
             handleSaveBankAccount: this.handleSaveBankAccount,
             handleSaveTransfer: this.handleSaveTransfer,
           }}
+          exporting={exporting}
           recipient={companyData}
           t={t}
         />
