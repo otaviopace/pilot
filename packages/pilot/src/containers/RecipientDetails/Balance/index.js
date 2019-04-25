@@ -99,10 +99,7 @@ class RecipientBalance extends Component {
     this.localizedPresets = datePresets(props.t)
 
     this.state = {
-      dates: {
-        end: props.dates.end,
-        start: props.dates.start,
-      },
+      dates: props.dates,
       showDateInputCalendar: false,
     }
   }

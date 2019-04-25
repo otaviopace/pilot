@@ -72,7 +72,7 @@ class DetailRecipientPage extends Component {
       currentPage: 1,
       dates: {
         end: moment(),
-        start: moment().subtract(1, 'month'),
+        start: moment().subtract(7, 'day'),
       },
       exporting: false,
       loading: true,
