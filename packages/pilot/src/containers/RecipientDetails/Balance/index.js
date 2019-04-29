@@ -437,13 +437,7 @@ class RecipientBalance extends Component {
                   onPageChange={this.handleOperationsPageChange}
                   onExport={onExport}
                   rows={operations.rows}
-                  subtitle={
-                    <span>
-                      {t('pages.balance.total.of')}
-                      <strong> {operations.total} </strong>
-                      {t('pages.balance.releases')}
-                    </span>
-                  }
+                  subtitle=""
                   t={t}
                   title={t('pages.balance.operations_title')}
                   totalPages={operations.count}
