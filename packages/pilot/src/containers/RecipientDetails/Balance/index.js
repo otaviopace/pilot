@@ -251,9 +251,7 @@ class RecipientBalance extends Component {
     if (automaticTransfer) {
       return (
         <div>
-          <p>{t('pages.balance.automatic_anticipation')}</p>
-          <span>{t('pages.balance.available_anticipation')}</span>
-          <strong> {formatAmount(available)} </strong>
+          <p>{t('pages.balance.anticipation_call')}</p>
         </div>
       )
     }
@@ -431,14 +429,13 @@ class RecipientBalance extends Component {
                   columns={translateColumns(getColumns(typesLabels))}
                   currentPage={currentPage}
                   disabled={disabled}
-                  exporting={exporting}
                   emptyMessage={t('models.operations.empty_message')}
                   exportLabel={t('models.operations.export')}
-                  loading={disabled}
+                  exporting={exporting}
+                  loading={disabled || loading}
                   ofLabel={t('of')}
-                  onExport={() => null}
                   onPageChange={this.handleOperationsPageChange}
-                  onExportData={onExport}
+                  onExport={onExport}
                   rows={operations.rows}
                   subtitle={
                     <span>
