@@ -36,7 +36,10 @@ const RecipientTable = ({
   onPageChange,
   onRowClick,
   onSelectRow,
-  pagination,
+  pagination: {
+    offset,
+    total,
+  },
   push,
   rows,
   selectedRows,
@@ -109,10 +112,11 @@ const RecipientTable = ({
                       </Button>
                     </div>
                     <Pagination
-                      currentPage={pagination.offset}
-                      totalPages={pagination.total}
-                      onPageChange={onPageChange}
+                      currentPage={offset}
                       disabled={loading}
+                      format="single"
+                      onPageChange={onPageChange}
+                      totalPages={total}
                       strings={{
                         of: t('components.pagination.of'),
                       }}
@@ -137,13 +141,14 @@ const RecipientTable = ({
               </CardContent>
               <CardActions>
                 <Pagination
-                  currentPage={pagination.offset}
+                  currentPage={offset}
                   disabled={loading}
+                  format="single"
                   onPageChange={onPageChange}
                   strings={{
                     of: t('components.pagination.of'),
                   }}
-                  totalPages={pagination.total}
+                  totalPages={total}
                 />
               </CardActions>
             </Card>
