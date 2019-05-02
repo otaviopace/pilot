@@ -9,6 +9,7 @@ import {
   Col,
   Row,
   Grid,
+  Truncate,
 } from 'former-kit'
 
 import formatDate from '../../formatters/longDate'
@@ -86,6 +87,12 @@ const getDefaultColumns = ({
   {
     accessor: ['id'],
     orderable: false,
+    renderer: recipient => (
+      <Truncate
+        resizableByWindow
+        text={recipient.id}
+      />
+    ),
     title: t('pages.recipients.id'),
   },
   {
@@ -96,6 +103,12 @@ const getDefaultColumns = ({
   {
     accessor: ['bank_account', 'legal_name'],
     orderable: false,
+    renderer: recipient => (
+      <Truncate
+        resizableByWindow
+        text={recipient.bank_account.legal_name}
+      />
+    ),
     title: t('pages.recipients.bank_account_legal_name'),
   },
   {
