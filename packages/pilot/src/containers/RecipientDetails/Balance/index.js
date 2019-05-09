@@ -507,6 +507,8 @@ RecipientBalance.propTypes = {
           actual: PropTypes.string.isRequired,
           original: PropTypes.string,
         }),
+        sourceId: PropTypes.string,
+        targetId: PropTypes.string,
         type: PropTypes.string.isRequired,
       })),
       total: PropTypes.number.isRequired,
