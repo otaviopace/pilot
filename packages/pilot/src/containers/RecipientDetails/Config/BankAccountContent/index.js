@@ -68,10 +68,14 @@ class BankAccountContent extends Component {
   constructor (props) {
     super(props)
 
+    const { data } = this.props
+
     this.state = {
+      selectedBankAccount: data.id,
       selectedForm: SELECT_ACCOUNT,
     }
 
+    this.handleDropdownChange = this.handleDropdownChange.bind(this)
     this.handleFormSelectionChange = this.handleFormSelectionChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -87,7 +91,7 @@ class BankAccountContent extends Component {
         }
       } else {
         dataTransformed = {
-          id: data.id,
+          id: this.state.selectedBankAccount,
         }
       }
       this.props.onSave(dataTransformed)
@@ -96,6 +100,12 @@ class BankAccountContent extends Component {
 
   handleFormSelectionChange (selectedForm) {
     this.setState({ selectedForm })
+  }
+
+  handleDropdownChange ({ target: { value } }) {
+    this.setState({
+      selectedBankAccount: value,
+    })
   }
 
   renderDocumentNumber () {
@@ -160,12 +170,12 @@ class BankAccountContent extends Component {
       <div className={styles.paddingTop}>
         <Grid>
           {this.renderDocumentNumber()}
-          {SelectAccountContent({
-            accounts,
-            data,
-            options: accounts.map(toDropdownOptions),
-            t,
-          })}
+          <SelectAccountContent
+            onChange={this.handleDropdownChange}
+            options={accounts.map(toDropdownOptions)}
+            t={t}
+            value={this.state.selectedBankAccount}
+          />
         </Grid>
       </div>
     )

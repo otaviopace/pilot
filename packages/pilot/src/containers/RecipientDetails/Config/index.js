@@ -23,7 +23,6 @@ class RecipientDetailConfig extends Component {
     super(props)
     this.state = {
       anticipation: this.props.anticipation,
-      bankAccount: this.props.bankAccount,
       expanded: {},
       openedModal: false,
       transfer: this.props.transfer,
@@ -31,7 +30,6 @@ class RecipientDetailConfig extends Component {
 
     this.handleCollapse = this.handleCollapse.bind(this)
     this.handleChangeAnticipation = this.handleChangeAnticipation.bind(this)
-    this.handleChangeBankAccount = this.handleChangeBankAccount.bind(this)
     this.handleChangeTransfer = this.handleChangeTransfer.bind(this)
     this.toggleChangeTransfer = this.toggleChangeTransfer.bind(this)
     this.renderAnticipationSub = this.renderAnticipationSub.bind(this)
@@ -46,12 +44,6 @@ class RecipientDetailConfig extends Component {
   handleChangeAnticipation (anticipation) {
     this.setState({
       anticipation,
-    })
-  }
-
-  handleChangeBankAccount (bankAccount) {
-    this.setState({
-      bankAccount,
     })
   }
 
@@ -73,7 +65,6 @@ class RecipientDetailConfig extends Component {
   handleCancel () {
     this.setState({
       anticipation: this.props.anticipation,
-      bankAccount: this.props.bankAccount,
       expanded: {},
       transfer: this.props.transfer,
     })
@@ -229,12 +220,12 @@ class RecipientDetailConfig extends Component {
   render () {
     const {
       accounts,
+      bankAccount,
       t,
     } = this.props
 
     const {
       anticipation,
-      bankAccount,
       openedModal,
       transfer,
     } = this.state
