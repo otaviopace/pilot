@@ -416,13 +416,11 @@ class RecipientBalance extends Component {
                 </CardContent>
                 <CardContent>
                   <Card>
-                    <CardContent>
-                      <BalanceSummary
-                        amount={this.getSummaryTotal()}
-                        dates={dates}
-                        loading={loading}
-                      />
-                    </CardContent>
+                    <BalanceSummary
+                      amount={this.getSummaryTotal()}
+                      dates={dates}
+                      loading={loading}
+                    />
                   </Card>
                 </CardContent>
                 <Operations
