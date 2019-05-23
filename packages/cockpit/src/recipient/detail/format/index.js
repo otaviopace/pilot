@@ -3,6 +3,7 @@ import {
   formatHeaderData,
   formatAnticipationData,
 } from './formatRecipient'
+import { formatBankAccount } from '../../account/formatBankAccount'
 
 const mountPartners = (previousState, partner, index) => ({
   ...previousState,
@@ -136,15 +137,7 @@ function formatAntecipationAndTransferConfiguration (data) {
   const configurationData = {
     anticipation,
     transfer,
-    bankAccount: {
-      agency: data.bank_account.agencia,
-      bank: data.bank_account.bank_code,
-      documentNumber: data.bank_account.document_number,
-      id: data.bank_account.id.toString(),
-      name: data.bank_account.legal_name,
-      number: data.bank_account.conta.toString(),
-      type: data.bank_account.type,
-    },
+    bankAccount: formatBankAccount(data.bank_account),
   }
 
   const formattedData = {
