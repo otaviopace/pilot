@@ -1,3 +1,8 @@
 import isUrl from 'validator/lib/isURL'
 
-export default message => value => (!value || !isUrl(value)) && message
+const options = {
+  protocols: ['http', 'https'],
+  require_protocol: true,
+}
+
+export default message => value => (!value || !isUrl(value, options)) && message
