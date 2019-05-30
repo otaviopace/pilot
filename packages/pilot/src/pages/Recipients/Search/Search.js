@@ -18,6 +18,7 @@ import {
   isNil,
   juxt,
   mergeAll,
+  mergeRight,
   path,
   pipe,
   replace,
@@ -35,6 +36,8 @@ import { requestLogout } from '../../Account/actions'
 
 import dateSelectorPresets from '../../../models/dateSelectorPresets'
 import RecipientTable from '../../../containers/RecipientTable'
+
+import { initialState } from '../../Recipients/Search/reducer'
 
 const mapStateToProps = ({
   account: { client },
@@ -68,10 +71,6 @@ const normalizeQueryStructure = applySpec({
   count: pipe(normalizeTo(15, ['count']), Number),
   offset: pipe(normalizeTo(1, ['offset']), Number),
   search: normalizeTo('', ['search']),
-  sort: {
-    field: normalizeTo(['created_at'], ['sort', 'field']),
-    order: normalizeTo('descending', ['sort', 'order']),
-  },
 })
 
 const parseQueryUrl = pipe(
@@ -102,8 +101,14 @@ class RecipientsSearch extends React.Component {
   constructor (props) {
     super(props)
 
+    const urlSearchQuery = props.history.location.search
+
     this.state = {
+      confirmationDisabled: false,
       expandedRows: [],
+      query: isEmpty(urlSearchQuery)
+        ? props.query
+        : parseQueryUrl(urlSearchQuery),
       result: {
         chart: {
           dataset: [],
@@ -119,6 +124,7 @@ class RecipientsSearch extends React.Component {
     this.handleExpandRow = this.handleExpandRow.bind(this)
     this.handleFilterChange = this.handleFilterChange.bind(this)
     this.handleFilterClear = this.handleFilterClear.bind(this)
+    this.handleFilterConfirm = this.handleFilterConfirm.bind(this)
     this.handleOrderChange = this.handleOrderChange.bind(this)
     this.handlePageChange = this.handlePageChange.bind(this)
     this.handlePageCountChange = this.handlePageCountChange.bind(this)
@@ -171,6 +177,8 @@ class RecipientsSearch extends React.Component {
         pathname: 'recipients',
         search: newQuery,
       })
+
+      this.requestData(query)
     }
   }
 
@@ -267,29 +275,39 @@ class RecipientsSearch extends React.Component {
     this.updateQuery(query)
   }
 
-  handleOrderChange (field) {
+  handleOrderChange () {
     const query = {
       ...this.props.query,
       offset: 1,
-      sort: {
-        field,
-      },
     }
 
     this.updateQuery(query)
   }
 
   handleFilterClear () {
-    this.updateQuery({ })
+    this.setState({
+      confirmationDisabled: false,
+    })
+
+    this.updateQuery({ initialState })
   }
 
-  handleFilterChange (filters) {
-    const {
-      search,
-    } = filters
+  handleFilterChange (query) {
+    const newQuery = mergeRight(this.state.query, query)
 
+    this.setState({
+      confirmationDisabled: false,
+      query: newQuery,
+    })
+  }
+
+  handleFilterConfirm ({
+    filters,
+    search,
+  }) {
     const query = {
-      ...this.props.query,
+      ...this.state.query,
+      filters,
       offset: 1,
       search,
     }
@@ -343,6 +361,7 @@ class RecipientsSearch extends React.Component {
     const {
       collapsed,
       columns,
+      confirmationDisabled,
       expandedRows,
       result: {
         list,
@@ -377,6 +396,7 @@ class RecipientsSearch extends React.Component {
         collapsed={collapsed}
         columns={columns}
         count={0}
+        confirmationDisabled={confirmationDisabled}
         dateSelectorPresets={dateSelectorPresets}
         expandedRows={expandedRows}
         filterOptions={[]}
@@ -386,6 +406,7 @@ class RecipientsSearch extends React.Component {
         onDetailsClick={this.handleRowDetailsClick}
         onExpandRow={this.handleExpandRow}
         onFilterChange={this.handleFilterChange}
+        onFilterConfirm={this.handleFilterConfirm}
         onFilterClear={this.handleFilterClear}
         onOrderChange={this.handleOrderChange}
         onPageChange={this.handlePageChange}
@@ -424,6 +445,7 @@ RecipientsSearch.propTypes = {
   onRequestSearchFail: PropTypes.func.isRequired,
   query: PropTypes.shape({
     count: PropTypes.number.isRequired,
+    filters: PropTypes.shape({}),
     offset: PropTypes.number.isRequired,
     search: PropTypes.string,
   }).isRequired,
