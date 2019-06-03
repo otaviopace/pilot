@@ -11,7 +11,7 @@ const mockRecipient = {
   hash: 'rj_qwedaefsdfwerasfgwtwetwe',
   id: '12345678',
   name: 'Nome da Company LTDA',
-  status: 'Ativo',
+  status: 'active',
 }
 
 const mockInformation = {
@@ -157,6 +157,7 @@ const RecipientDetailsExample = () => (
         configurationProps={mockConfiguration}
         balanceProps={mockBalance}
         recipient={mockRecipient}
+        isAcronym={false}
       />
     </Card>
   </Section>

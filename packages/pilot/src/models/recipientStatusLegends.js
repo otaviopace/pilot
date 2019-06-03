@@ -11,8 +11,8 @@ const status = {
   inactive: {
     color: '#613fc7',
   },
-  paid: {
-    color: '#17c9b2',
+  processing: {
+    color: '#561e6a',
   },
   refused: {
     color: '#da272c',

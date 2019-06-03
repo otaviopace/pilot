@@ -820,7 +820,7 @@
         "affiliation": "AF",
         "blocked": "TB",
         "inactive": "PD",
-        "paid": "P",
+        "processing": "PR",
         "refused": "R",
         "registration": "CR",
         "suspended": "TS"

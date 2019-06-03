@@ -77,6 +77,7 @@ const getDefaultColumns = ({
     orderable: false,
     renderer: item => (
       <StatusLegend
+        isAcronym
         item={item}
         t={t}
       />

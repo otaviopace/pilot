@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {
   Card,
   CardContent,
-  Legend,
   TabBar,
   TabItem,
 } from 'former-kit'
@@ -13,6 +12,7 @@ import Configuration from './Config'
 import Balance from './Balance'
 import styles from './styles.css'
 import dateFormatter from '../../formatters/longDate'
+import StatusLegend from '../RecipientTable/statusLegend'
 
 class RecipientDetails extends Component {
   constructor (props) {
@@ -56,13 +56,13 @@ class RecipientDetails extends Component {
               <div className={styles.status}>
                 <span className={styles.label}>{t('pages.recipients.status')}</span>
                 <div className={styles.statusLegend}>
-                  <Legend
-                    color="#17c9b2"
-                    acronym={recipient.status}
-                    hideLabel
+                  <StatusLegend
+                    item={recipient}
+                    isAcronym={false}
+                    t={t}
                   >
                     {t('pages.recipients.active')}
-                  </Legend>
+                  </StatusLegend>
                 </div>
               </div>
             </div>
