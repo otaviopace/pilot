@@ -104,11 +104,10 @@ class RecipientsSearch extends React.Component {
     const urlSearchQuery = props.history.location.search
 
     this.state = {
+      clearFilterDisabled: false,
       confirmationDisabled: false,
       expandedRows: [],
-      query: isEmpty(urlSearchQuery)
-        ? props.query
-        : parseQueryUrl(urlSearchQuery),
+      query: props.query || parseQueryUrl(urlSearchQuery),
       result: {
         chart: {
           dataset: [],
@@ -142,15 +141,6 @@ class RecipientsSearch extends React.Component {
       this.updateQuery(this.props.query)
     } else {
       this.requestData(parseQueryUrl(urlSearchQuery))
-    }
-  }
-
-  componentWillReceiveProps (nextProps) {
-    const { location: { search } } = this.props
-    const { location } = nextProps
-
-    if (search !== location.search) {
-      this.requestData(parseQueryUrl(location.search))
     }
   }
 
@@ -286,16 +276,19 @@ class RecipientsSearch extends React.Component {
 
   handleFilterClear () {
     this.setState({
-      confirmationDisabled: false,
+      clearFilterDisabled: true,
+      confirmationDisabled: true,
+      query: initialState.query,
     })
 
-    this.updateQuery({ initialState })
+    this.updateQuery(initialState.query)
   }
 
   handleFilterChange (query) {
     const newQuery = mergeRight(this.state.query, query)
 
     this.setState({
+      clearFilterDisabled: true,
       confirmationDisabled: false,
       query: newQuery,
     })
@@ -311,6 +304,11 @@ class RecipientsSearch extends React.Component {
       offset: 1,
       search,
     }
+
+    this.setState({
+      clearFilterDisabled: false,
+      confirmationDisabled: true,
+    })
 
     this.updateQuery(query)
   }
@@ -359,6 +357,7 @@ class RecipientsSearch extends React.Component {
 
   render () {
     const {
+      clearFilterDisabled,
       collapsed,
       columns,
       confirmationDisabled,
@@ -396,6 +395,7 @@ class RecipientsSearch extends React.Component {
         collapsed={collapsed}
         columns={columns}
         count={0}
+        clearFilterDisabled={clearFilterDisabled}
         confirmationDisabled={confirmationDisabled}
         dateSelectorPresets={dateSelectorPresets}
         expandedRows={expandedRows}

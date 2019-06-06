@@ -27,6 +27,7 @@ import Filter from '../Filter'
 import tableColumns from './tableColumns'
 
 const RecipientTable = ({
+  clearFilterDisabled,
   confirmationDisabled,
   expandedRows,
   filterOptions,
@@ -66,6 +67,7 @@ const RecipientTable = ({
           tv={12}
         >
           <Filter
+            clearFilterDisabled={clearFilterDisabled}
             confirmationDisabled={confirmationDisabled}
             disabled={loading}
             onConfirm={onFilterConfirm}
@@ -168,6 +170,7 @@ const RecipientTable = ({
 }
 
 RecipientTable.propTypes = {
+  clearFilterDisabled: PropTypes.bool,
   confirmationDisabled: PropTypes.bool,
   expandedRows: PropTypes.arrayOf(PropTypes.number).isRequired,
   filterOptions: PropTypes.arrayOf(PropTypes.shape({
@@ -220,6 +223,7 @@ RecipientTable.propTypes = {
 }
 
 RecipientTable.defaultProps = {
+  clearFilterDisabled: false,
   confirmationDisabled: false,
   query: {
     properties: {},
