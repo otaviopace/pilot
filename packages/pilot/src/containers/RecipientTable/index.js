@@ -22,6 +22,7 @@ import {
   Table,
 } from 'former-kit'
 
+import Loader from '../../components/Loader'
 import style from './style.css'
 import Filter from '../Filter'
 import tableColumns from './tableColumns'
@@ -90,6 +91,7 @@ const RecipientTable = ({
           desk={12}
           tv={12}
         >
+          {loading && <Loader visible />}
           {rows.length <= 0 && !loading &&
             <Alert
               icon={<IconInfo height={16} width={16} />}
