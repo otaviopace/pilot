@@ -775,7 +775,7 @@
     "recipients": {
       "add": "Adicionar recebedor",
       "active": "ativo",
-      "anticipatable_volume_percentage": "Volume antecipado",
+      "anticipatable_volume_percentage": "Volume antecipável",
       "anticipation_model": "Modelo",
       "anticipation_model_of": {
         "manual": "Manual por Volume",
