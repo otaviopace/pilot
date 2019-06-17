@@ -534,6 +534,7 @@ class DetailRecipientPage extends Component {
           isOpen={showModal}
           onCancel={this.hideCancelAnticipationModal}
           onConfirm={this.handleAnticipationCancel}
+          size="default"
           title={t('cancel_pending_request_title')}
         >
           <div style={style}>

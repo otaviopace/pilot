@@ -286,6 +286,7 @@ class RecipientDetailConfig extends Component {
           anticipationModel={anticipation.anticipationModel}
           isOpen={openedModal}
           onExit={this.handleCloseHelpModal}
+          size="huge"
           title={t('pages.recipient_detail.title_modal')}
           t={t}
         />

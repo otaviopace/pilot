@@ -202,6 +202,7 @@ class ConfigurationsStep extends Component {
           anticipationModel={data.anticipationModel}
           isOpen={openedModal}
           onExit={this.handleCloseHelpModal}
+          size="huge"
           title={t('pages.recipient_detail.title_modal')}
           t={t}
         />

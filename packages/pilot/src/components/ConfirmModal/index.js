@@ -18,11 +18,13 @@ const ConfirmModal = ({
   isOpen,
   onCancel,
   onConfirm,
+  size,
   title,
 }) => (
   <Modal
     isOpen={isOpen}
     onRequestClose={onCancel}
+    size={size}
   >
     <ModalTitle
       title={title}
@@ -52,6 +54,7 @@ ConfirmModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onCancel: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
+  size: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 }
 

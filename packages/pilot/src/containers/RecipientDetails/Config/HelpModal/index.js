@@ -99,6 +99,7 @@ const HelpModal = ({
   anticipationModel,
   isOpen,
   onExit,
+  size,
   t,
   title,
 }) => (
@@ -106,6 +107,7 @@ const HelpModal = ({
     isOpen={isOpen}
     onRequestClose={onExit}
     className={style.modalWidth}
+    size={size}
   >
     <ModalTitle
       title={title}
@@ -137,6 +139,7 @@ HelpModal.propTypes = {
   anticipationModel: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   onExit: PropTypes.func.isRequired,
+  size: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
 }
