@@ -65,6 +65,12 @@
   "items_per_page": "{{count}} item por página",
   "of": "de",
   "password": "Senha",
+  "prompt": {
+    "title": "Atenção!",
+    "message": "Tem certeza que deseja cancelar o fluxo atual? Todas as informações serão perdidas.",
+    "confirm": "Sim, quero sair",
+    "deny": "Não quero sair"
+  },
   "recipient": "Recebedor",
   "try_again": "Tentar novamente",
   "view_transaction": "Visualizar transação",
