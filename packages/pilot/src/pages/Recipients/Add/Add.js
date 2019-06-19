@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { translate } from 'react-i18next'
-import { withRouter } from 'react-router-dom'
+import { Prompt, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose, pathOr } from 'ramda'
 
@@ -56,6 +56,10 @@ class AddRecipientPage extends Component {
   constructor (props) {
     super(props)
 
+    this.state = {
+      shouldValidateExit: true,
+    }
+
     this.fetchAccounts = this.fetchAccounts.bind(this)
     this.onExit = this.onExit.bind(this)
     this.onLoginAgain = this.onLoginAgain.bind(this)
@@ -64,15 +68,28 @@ class AddRecipientPage extends Component {
   }
 
   onExit () {
-    this.props.history.replace('/recipients')
+    this.setState(
+      { shouldValidateExit: true },
+      () => {
+        this.props.history.replace('/recipients')
+      }
+    )
   }
 
   onLoginAgain () {
-    this.props.redirectToLoginPage()
+    this.setState(
+      { shouldValidateExit: false },
+      this.props.redirectToLoginPage
+    )
   }
 
   onViewDetails (recipientId) {
-    this.props.history.replace(`/recipients/detail/${recipientId}`)
+    this.setState(
+      { shouldValidateExit: false },
+      () => {
+        this.props.history.replace(`/recipients/detail/${recipientId}`)
+      }
+    )
   }
 
   submitRecipient (recipient) {
@@ -85,16 +102,25 @@ class AddRecipientPage extends Component {
   }
 
   render () {
+    const { t } = this.props
+    const { shouldValidateExit } = this.state
+
     return (
-      <AddRecipient
-        fetchAccounts={this.fetchAccounts}
-        onExit={this.onExit}
-        onLoginAgain={this.onLoginAgain}
-        onViewDetails={this.onViewDetails}
-        options={this.props.options}
-        submitRecipient={this.submitRecipient}
-        t={this.props.t}
-      />
+      <Fragment>
+        <Prompt
+          when={shouldValidateExit}
+          message={t('prompt.message')}
+        />
+        <AddRecipient
+          fetchAccounts={this.fetchAccounts}
+          onExit={this.onExit}
+          onLoginAgain={this.onLoginAgain}
+          onViewDetails={this.onViewDetails}
+          options={this.props.options}
+          submitRecipient={this.submitRecipient}
+          t={this.props.t}
+        />
+      </Fragment>
     )
   }
 }
