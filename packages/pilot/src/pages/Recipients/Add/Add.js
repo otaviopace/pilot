@@ -8,17 +8,17 @@ import { compose, pathOr } from 'ramda'
 import { requestLogout } from '../../Account/actions'
 import AddRecipient from '../../../../src/containers/AddRecipient'
 
-const getUserPermission =
-  pathOr('admin', ['permission'])
+const permissionPath = ['permission']
+const getUserPermission = pathOr('admin', permissionPath)
 
-const getAnticipationParams =
-  pathOr(true, ['anticipation_config', 'config_anticipation_params'])
+const paramsPath = ['anticipation_config', 'config_anticipation_params']
+const getAnticipationParams = pathOr(true, paramsPath)
 
-const getMinimumDelay =
-  pathOr(15, ['anticipation_config', 'minimum_delay'])
+const delayPath = ['anticipation_config', 'minimum_delay']
+const getMinimumDelay = pathOr(15, delayPath)
 
-const getMaximumAnticipationDays =
-  pathOr(31, ['anticipation_config', 'max_anticipation_days'])
+const maxDaysPath = ['anticipation_config', 'max_anticipation_days']
+const getMaximumAnticipationDays = pathOr(31, maxDaysPath)
 
 const mapStateToProps = (state) => {
   const { account } = state
@@ -102,7 +102,11 @@ class AddRecipientPage extends Component {
   }
 
   render () {
-    const { t } = this.props
+    const {
+      options,
+      t,
+    } = this.props
+
     const { shouldValidateExit } = this.state
 
     return (
@@ -116,9 +120,9 @@ class AddRecipientPage extends Component {
           onExit={this.onExit}
           onLoginAgain={this.onLoginAgain}
           onViewDetails={this.onViewDetails}
-          options={this.props.options}
+          options={options}
           submitRecipient={this.submitRecipient}
-          t={this.props.t}
+          t={t}
         />
       </Fragment>
     )

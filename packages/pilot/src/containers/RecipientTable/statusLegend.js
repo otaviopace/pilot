@@ -29,7 +29,9 @@ const StatusLegend = ({
 
 StatusLegend.propTypes = {
   isAcronym: PropTypes.bool,
-  item: PropTypes.string.isRequired,
+  item: PropTypes.shape({
+    status: PropTypes.string.isRequired,
+  }).isRequired,
   t: PropTypes.func.isRequired,
 }
 
