@@ -4,7 +4,7 @@ import Configuration32 from 'emblematic-icons/svg/Configuration32.svg'
 import Withdraw32 from 'emblematic-icons/svg/Withdraw32.svg'
 import Store32 from 'emblematic-icons/svg/Store32.svg'
 
-// import { Balance } from '../Balance'
+import { Balance } from '../Balance'
 import { Anticipation } from '../Anticipation'
 // import CompanySettings from '../CompanySettings'
 // import Transactions from '../Transactions'
@@ -30,13 +30,13 @@ export default {
     path: '/anticipation/:id?',
     title: 'pages.anticipation.title',
   },
-  // balance: {
-  //   component: Balance,
-  //   exact: true,
-  //   icon: Balance32,
-  //   path: '/balance/:id?',
-  //   title: 'pages.balance.title',
-  // },
+  balance: {
+    component: Balance,
+    exact: true,
+    icon: Balance32,
+    path: '/balance/:id?',
+    title: 'pages.balance.title',
+  },
   // transactions: {
   //   component: Transactions,
   //   exact: true,

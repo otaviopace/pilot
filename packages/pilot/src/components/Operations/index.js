@@ -89,7 +89,6 @@ class Operations extends PureComponent {
           disabled={disabled}
           format="single"
           onPageChange={onPageChange}
-          format="single"
           totalPages={totalPages}
         />
       </div>

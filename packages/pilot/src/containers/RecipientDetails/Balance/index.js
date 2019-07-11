@@ -82,6 +82,8 @@ const anyDateRange = {
 const formatAmount = (amount = 0) =>
   currencyFormatter(amount)
 
+const defaultPageNumber = 15
+
 class RecipientBalance extends Component {
   constructor (props) {
     super(props)
@@ -96,7 +98,7 @@ class RecipientBalance extends Component {
     this.renderAnticipation = this.renderAnticipation.bind(this)
     this.handlePresetChange = this.handlePresetChange.bind(this)
 
-    this.localizedPresets = datePresets(props.t)
+    this.localizedPresets = datePresets(props.t, 'past')
 
     this.state = {
       dates: props.dates,
@@ -265,6 +267,7 @@ class RecipientBalance extends Component {
   }
 
   render () {
+    console.log('RecipientDetails/Balance', this.props)
     const {
       anticipation: {
         available: availableAnticipation,
@@ -287,6 +290,7 @@ class RecipientBalance extends Component {
       onCancelRequestClick,
       onExport,
       onWithdrawClick,
+      pageSizeOptions,
       search: {
         operations,
       },
@@ -332,11 +336,11 @@ class RecipientBalance extends Component {
                   action={isNil(onWithdrawClick)
                     ? null
                     : withdrawalAction}
-                  amount={formatAmount(amount)}
+                  amount={amount}
                   detail={
                     <span>
                       {t('pages.balance.available_withdrawal')}
-                      <strong> {currencyFormatter(withdrawal)} </strong>
+                      <strong> {formatAmount(withdrawal)} </strong>
                     </span>
                   }
                   disabled={disabled}
@@ -355,7 +359,7 @@ class RecipientBalance extends Component {
                   action={isNil(onAnticipationClick)
                     ? null
                     : anticipationAction}
-                  amount={formatAmount(outcoming)}
+                  amount={outcoming}
                   detail={this.renderAnticipation()}
                   disabled={shouldDisableAnticipation}
                   title={t('pages.balance.anticipation_title')}
@@ -399,7 +403,7 @@ class RecipientBalance extends Component {
                       onChange={this.handleDatesChange}
                       onPresetChange={this.handlePresetChange}
                       presets={this.localizedPresets}
-                      selectedPreset="last-7"
+                      selectedPreset="days-7"
                       strings={getDateLabels(this.props.t)}
                       showCalendar={this.state.showDateInputCalendar}
                       dates={this.state.dates}
@@ -426,16 +430,27 @@ class RecipientBalance extends Component {
                 <Operations
                   columns={translateColumns(getColumns(typesLabels))}
                   currentPage={currentPage}
+                  dates={dates}
                   disabled={disabled}
                   emptyMessage={t('models.operations.empty_message')}
                   exportLabel={t('models.operations.export')}
                   exporting={exporting}
+                  itemsPerPage={defaultPageNumber}
                   loading={disabled || loading}
-                  ofLabel={t('of')}
+                  labels={{
+                    empty: t('models.operations.empty_message'),
+                    exportCall: t('export_table'),
+                    exportTo: t('export_to'),
+                    results: t(
+                      'pages.balance.results',
+                      { count: operations.total }
+                    ),
+                    totalOf: t('pages.balance.total.of'),
+                  }}
                   onPageChange={this.handleOperationsPageChange}
                   onExport={onExport}
+                  pageSizeOptions={pageSizeOptions}
                   rows={operations.rows}
-                  subtitle=""
                   t={t}
                   title={t('pages.balance.operations_title')}
                   totalPages={operations.count}
@@ -486,6 +501,7 @@ RecipientBalance.propTypes = {
   onFilterClick: PropTypes.func.isRequired,
   onPageChange: PropTypes.func.isRequired,
   onWithdrawClick: PropTypes.func.isRequired,
+  pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
   requests: PropTypes.arrayOf(PropTypes.shape({
     amount: PropTypes.number,
     created_at: PropTypes.string,
@@ -522,6 +538,7 @@ RecipientBalance.propTypes = {
 
 RecipientBalance.defaultProps = {
   onCancelRequestClick: null,
+  pageSizeOptions: [15, 30, 60, 100],
   total: {},
 }
 

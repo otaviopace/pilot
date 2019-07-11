@@ -414,10 +414,24 @@ class DetailRecipientPage extends Component {
       count: 10,
       dates,
       page,
+      timeframe: 'future',
     }
 
-    return client.balance.data(id, query)
-      .then(response => response.result)
+    const getOperations = client.balance.operations({
+      ...query,
+      recipientId: id,
+    })
+
+    const getRecipientData = client.balance.data(id, query)
+
+    return Promise.all([getOperations, getRecipientData])
+      .then(([operations, data]) => ({
+        ...data.result,
+        search: {
+          ...operations.result.search,
+          query: operations.query,
+        },
+      }))
   }
 
   fetchBalanceTotal (dates) {

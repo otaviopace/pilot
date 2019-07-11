@@ -15,7 +15,7 @@ import {
   __,
 } from 'ramda'
 import classNames from 'classnames'
-import { Tooltip, Truncate } from 'former-kit'
+import { Tooltip } from 'former-kit'
 import IconAnticipation from 'emblematic-icons/svg/Undo24.svg'
 import currencyFormatter from '../../formatters/currency'
 import style from './style.css'
@@ -67,25 +67,27 @@ const isTransferSource = lt(__, 0)
 
 const renderTargetOrSource = (type, net, targetId, sourceId, labels) => {
   if (type === 'inter_recipient' && isTransferSource(net)) {
-    return (
-      <div>
-        <Truncate
-          resizableByWindow
-          text={`${labels.to} ${targetId}`}
-        />
-      </div>
-    )
+    // return (
+    //   <div>
+    //     <Truncate
+    //       resizableByWindow
+    //       text={`${labels.to} ${targetId}`}
+    //     />
+    //   </div>
+    // )
+    return `${labels.to} ${targetId}`
   }
 
   if (type === 'inter_recipient' && !isTransferSource(net)) {
-    return (
-      <div>
-        <Truncate
-          resizableByWindow
-          text={`${labels.from} ${sourceId}`}
-        />
-      </div>
-    )
+    // return (
+    //   <div>
+    //     <Truncate
+    //       resizableByWindow
+    //       text={`${labels.from} ${sourceId}`}
+    //     />
+    //   </div>
+    // )
+    return `${labels.from} ${sourceId}`
   }
 
   return null
