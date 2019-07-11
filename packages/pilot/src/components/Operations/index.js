@@ -65,7 +65,7 @@ class Operations extends PureComponent {
               icon={<Download32 width={12} height={12} />}
               loading={exporting}
               placement="bottomEnd"
-              relevance="low"
+              relevance="high"
               size="tiny"
               subtitle={exportTo}
               title={exportCall}
@@ -73,6 +73,7 @@ class Operations extends PureComponent {
             <Spacing size="tiny" />
           </Fragment>
         }
+        { itemsPerPage !== undefined &&
         <Dropdown
           disabled={disabled}
           name="page-count"
@@ -83,6 +84,7 @@ class Operations extends PureComponent {
           size="tiny"
           value={itemsPerPage.toString()}
         />
+        }
         <Spacing size="tiny" />
         <Pagination
           currentPage={currentPage}

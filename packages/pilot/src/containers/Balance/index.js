@@ -503,24 +503,26 @@ class Balance extends Component {
               tablet={6}
               tv={4}
             >
-              <BalanceTotalDisplay
-                action={
-                  isNil(onWithdrawClick)
-                    ? null
-                    : withdrawalAction
-                }
-                amount={amount}
-                detail={
-                  <span>
-                    {t('pages.balance.available_withdrawal')}
-                    <strong> {currencyFormatter(withdrawal)} </strong>
-                  </span>
-                }
-                disabled={
-                  disabled || withdrawal <= ted + MINIMUM_API_VALUE
-                }
-                title={t('pages.balance.withdrawal_title')}
-              />
+              <Card>
+                <BalanceTotalDisplay
+                  action={
+                    isNil(onWithdrawClick)
+                      ? null
+                      : withdrawalAction
+                  }
+                  amount={amount}
+                  detail={
+                    <span>
+                      {t('pages.balance.available_withdrawal')}
+                      <strong> {currencyFormatter(withdrawal)} </strong>
+                    </span>
+                  }
+                  disabled={
+                    disabled || withdrawal <= ted + MINIMUM_API_VALUE
+                  }
+                  title={t('pages.balance.withdrawal_title')}
+                />
+              </Card>
             </Col>
             <Col
               desk={4}
@@ -528,32 +530,34 @@ class Balance extends Component {
               tablet={6}
               tv={4}
             >
-              <BalanceTotalDisplay
-                action={
-                  isNil(onAnticipationClick)
-                  ? null
-                  : anticipationAction
-                }
-                amount={outcoming}
-                // This block of code is commented because of issue #1159 (https://github.com/pagarme/pilot/issues/1159)
-                // It was commented on to remove the anticipation limits call on Balance page
-                // This code will be used again in the future when ATLAS project implements the anticipation flow
-                // More details in issue #1159
-                // detail={this.renderAnticipation()}
-                // disabled={
-                //   disabled
-                //   || anticipationLoading
-                //   || anticipationError
-                //   || available < MINIMUM_API_VALUE
-                // }
-                detail={
-                  <span>
-                    {t('pages.balance.anticipation_call')}
-                  </span>
-                }
-                disabled={disabled}
-                title={t('pages.balance.waiting_funds')}
-              />
+              <Card>
+                <BalanceTotalDisplay
+                  action={
+                    isNil(onAnticipationClick)
+                    ? null
+                    : anticipationAction
+                  }
+                  amount={outcoming}
+                  // This block of code is commented because of issue #1159 (https://github.com/pagarme/pilot/issues/1159)
+                  // It was commented on to remove the anticipation limits call on Balance page
+                  // This code will be used again in the future when ATLAS project implements the anticipation flow
+                  // More details in issue #1159
+                  // detail={this.renderAnticipation()}
+                  // disabled={
+                  //   disabled
+                  //   || anticipationLoading
+                  //   || anticipationError
+                  //   || available < MINIMUM_API_VALUE
+                  // }
+                  detail={
+                    <span>
+                      {t('pages.balance.anticipation_call')}
+                    </span>
+                  }
+                  disabled={disabled}
+                  title={t('pages.balance.waiting_funds')}
+                />
+              </Card>
             </Col>
             <Col
               desk={4}

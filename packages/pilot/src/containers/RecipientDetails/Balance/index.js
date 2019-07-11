@@ -14,7 +14,6 @@ import {
 
 import {
   Button,
-  Card,
   CardContent,
   CardSection,
   Col,
@@ -82,7 +81,7 @@ const anyDateRange = {
 const formatAmount = (amount = 0) =>
   currencyFormatter(amount)
 
-const defaultPageNumber = 15
+// const defaultPageNumber = 15
 
 class RecipientBalance extends Component {
   constructor (props) {
@@ -267,7 +266,6 @@ class RecipientBalance extends Component {
   }
 
   render () {
-    console.log('RecipientDetails/Balance', this.props)
     const {
       anticipation: {
         available: availableAnticipation,
@@ -418,43 +416,41 @@ class RecipientBalance extends Component {
                     </Button>
                   </div>
                 </CardContent>
-                <CardContent>
-                  <Card>
-                    <BalanceSummary
-                      amount={this.getSummaryTotal()}
-                      dates={dates}
-                      loading={loading}
-                    />
-                  </Card>
-                </CardContent>
-                <Operations
-                  columns={translateColumns(getColumns(typesLabels))}
-                  currentPage={currentPage}
+                <BalanceSummary
+                  amount={this.getSummaryTotal()}
                   dates={dates}
-                  disabled={disabled}
-                  emptyMessage={t('models.operations.empty_message')}
-                  exportLabel={t('models.operations.export')}
-                  exporting={exporting}
-                  itemsPerPage={defaultPageNumber}
-                  loading={disabled || loading}
-                  labels={{
-                    empty: t('models.operations.empty_message'),
-                    exportCall: t('export_table'),
-                    exportTo: t('export_to'),
-                    results: t(
-                      'pages.balance.results',
-                      { count: operations.total }
-                    ),
-                    totalOf: t('pages.balance.total.of'),
-                  }}
-                  onPageChange={this.handleOperationsPageChange}
-                  onExport={onExport}
-                  pageSizeOptions={pageSizeOptions}
-                  rows={operations.rows}
-                  t={t}
-                  title={t('pages.balance.operations_title')}
-                  totalPages={operations.count}
+                  loading={loading}
                 />
+                <CardContent>
+                  <Operations
+                    columns={translateColumns(getColumns(typesLabels))}
+                    currentPage={currentPage}
+                    dates={dates}
+                    disabled={disabled}
+                    emptyMessage={t('models.operations.empty_message')}
+                    exportLabel={t('models.operations.export')}
+                    exporting={exporting}
+                    // itemsPerPage={defaultPageNumber}
+                    loading={disabled || loading}
+                    labels={{
+                      empty: t('models.operations.empty_message'),
+                      exportCall: t('export_table'),
+                      exportTo: t('export_to'),
+                      results: t(
+                        'pages.balance.results',
+                        { count: operations.total }
+                      ),
+                      totalOf: t('pages.balance.total.of'),
+                    }}
+                    onPageChange={this.handleOperationsPageChange}
+                    onExport={onExport}
+                    pageSizeOptions={pageSizeOptions}
+                    rows={operations.rows}
+                    t={t}
+                    title={t('pages.balance.operations_title')}
+                    totalPages={operations.count}
+                  />
+                </CardContent>
               </CardSection>
             </Col>
           </Row>

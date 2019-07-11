@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import {
   Button,
-  Card,
   CardContent,
   CardTitle,
 } from 'former-kit'
@@ -19,7 +18,7 @@ const BalanceTotalDisplay = ({
 }) => {
   const { symbol, value } = currencyToParts(Math.abs(amount))
   return (
-    <Card>
+    <Fragment>
       <CardTitle
         className={style.title}
         title={title}
@@ -46,7 +45,7 @@ const BalanceTotalDisplay = ({
           </Button>
         }
       </CardContent>
-    </Card>
+    </Fragment>
   )
 }
 
