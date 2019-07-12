@@ -303,7 +303,7 @@ class Withdraw extends Component {
             date={moment()}
             disabled={confirmationDisabledButtons}
             maximum={getAvailableTransferAmount(recipient)}
-            onCancel={this.goToPreviousPage}
+            onBack={this.goToPreviousPage}
             onConfirmationConfirm={this.handleConfirmationConfirm}
             onConfirmationReturn={() => this.goTo('data', 'current')}
             onFormSubmit={() => this.goTo('confirmation', 'current')}
