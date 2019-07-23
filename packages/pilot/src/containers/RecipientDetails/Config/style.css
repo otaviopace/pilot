@@ -26,6 +26,7 @@
 .justifyContent {
   display: block;
   justify-content: flex-end;
+  margin-top: 102px;
 }
 
 .imgSize {

@@ -63,7 +63,7 @@ const renderDX = t => (
 
 const renderIfManualOrAutomaticModel = (anticipationModel, t) => {
   const manual = (anticipationModel === 'manual')
-  const automatic = (anticipationModel === 'automatic')
+  const automatic = (anticipationModel === 'automatic_volume')
   if (manual || automatic) {
     return (
       <Fragment>
