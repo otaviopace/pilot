@@ -136,7 +136,6 @@ const HomeContainer = ({
             styles={{
               height: 150,
               innerRadius: 30,
-              width: 250,
             }}
             title={t('pages.home.transactions_by_status')}
             type="donut"
