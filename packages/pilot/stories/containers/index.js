@@ -61,6 +61,7 @@ import {
 import Anticipation from './Anticipation'
 import BoletoConfigurationForm from './Settings/Boleto/Form'
 import BankAccount from './Settings/BankAccount'
+import Home from './Home'
 
 storiesOf('Containers|Bank/Account', module)
   .add('selector', () => <BankAccountSelector />)
@@ -251,4 +252,7 @@ storiesOf('Containers|Page containers', module)
   ))
   .add('Bank Account Form', () => (
     <BankAccountForm />
+  ))
+  .add('Home', () => (
+    <Home />
   ))

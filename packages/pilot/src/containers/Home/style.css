@@ -1,0 +1,49 @@
+@import "former-kit-skin-pagarme/dist/styles/spacing";
+@import "former-kit-skin-pagarme/dist/styles/media.css";
+
+.greeting {
+  margin-bottom: var(--spacing-small);
+
+  & > .name {
+    margin-bottom: var(--spacing-tiny);
+  }
+}
+
+.dates {
+  margin-right: var(--spacing-tiny);
+  width: auto;
+}
+
+.grid {
+  margin-top: var(--spacing-large);
+}
+
+.sideColumn > div {
+  max-width: 100%;
+}
+
+.bottomColumn {
+  max-width: 50%;
+  width: 50%;
+
+  & > div {
+    max-width: 100%;
+  }
+}
+
+.column {
+  align-content: space-between;
+
+  & > div {
+    flex: 1;
+    width: 100%;
+  }
+}
+
+.dateSelectorContainer > div > div > div {
+  right: -10px;
+}
+
+.column > div:first-child {
+  margin-bottom: var(--spacing-small);
+}

@@ -6,6 +6,8 @@
   }
 
   & .icon {
+    align-items: center;
+    display: flex;
     margin-left: auto;
   }
 }

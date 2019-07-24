@@ -27,7 +27,7 @@ const MetricCard = ({
 MetricCard.propTypes = {
   icon: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.node.isRequired,
 }
 
 export default MetricCard
