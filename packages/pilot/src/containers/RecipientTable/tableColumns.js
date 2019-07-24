@@ -83,16 +83,19 @@ const getDefaultColumns = ({
       />
     ),
     title: t('pages.recipients.status'),
+    width: 74,
   },
   {
     accessor: ['id'],
     orderable: false,
     title: t('pages.recipients.id'),
+    width: 240,
   },
   {
     accessor: ['bank_account', 'id'],
     orderable: false,
     title: t('pages.recipients.bank_account_id'),
+    width: 158,
   },
   {
     accessor: ['bank_account', 'legal_name'],
@@ -103,12 +106,14 @@ const getDefaultColumns = ({
     accessor: ['bank_account', 'document_number'],
     orderable: false,
     title: t('pages.recipients.bank_account_document_number'),
+    width: 172,
   },
   {
     accessor: ['date_created'],
     orderable: false,
     renderer: pipe(prop('date_created'), formatDate),
     title: t('pages.recipients.date_created'),
+    width: 126,
   },
   {
     accessor: ['updated_at'],
