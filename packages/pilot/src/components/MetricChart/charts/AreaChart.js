@@ -18,6 +18,7 @@ const MetricAreaChart = ({
   labelFormatter,
   styles: {
     colors,
+    fontSize,
     gridLines,
     height,
     width,
@@ -35,11 +36,17 @@ const MetricAreaChart = ({
       <XAxis
         axisLine={false}
         dataKey="label"
+        tick={{
+          fontSize: fontSize || 12,
+        }}
         tickLine={false}
         tickMargin={10}
       />
       <YAxis
         axisLine={false}
+        tick={{
+          fontSize: fontSize || 12,
+        }}
         tickLine={false}
         tickMargin={10}
       />

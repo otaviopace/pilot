@@ -23,14 +23,16 @@ const Chart = ({
   title,
   type,
 }) => (
-  <MetricChart
-    styles={styles}
-    type={type}
-    labelFormatter={labelFormatter}
-    showLegend={showLegend}
-    title={title}
-    data={data}
-  />
+  <div style={{ width: '100%' }}>
+    <MetricChart
+      styles={styles}
+      type={type}
+      labelFormatter={labelFormatter}
+      showLegend={showLegend}
+      title={title}
+      data={data}
+    />
+  </div>
 )
 
 const installmentsLabel = installment => (installment > 1
