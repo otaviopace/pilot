@@ -24,6 +24,9 @@ import {
 const dateConfirmAction = action('onDateConfirm')
 const loadingAction = action('onLoadingChange')
 
+const dateConfirmAction = action('onDateConfirm')
+const loadingAction = action('onLoadingChange')
+
 class HomeContainerExample extends Component {
   constructor () {
     super()
