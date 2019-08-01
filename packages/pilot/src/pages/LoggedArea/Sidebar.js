@@ -40,6 +40,7 @@ const Sidebar = ({
   // More details in issue #1159
   // anticipationLimit,
   balance,
+  companyCapabilities,
   companyName,
   history,
   location: { pathname },
@@ -52,7 +53,12 @@ const Sidebar = ({
     balance={balance}
     companyName={companyName}
     links={values(routes)
-      .filter(({ hidden }) => !hidden)
+      .filter(({ hidden }) => {
+        if (typeof hidden === 'function') {
+          return !hidden(companyCapabilities)
+        }
+        return !hidden
+      })
       .map(route => ({
         ...route,
         active: pathname.includes(removeRouteParams(route.path)),
@@ -81,6 +87,9 @@ Sidebar.propTypes = {
   balance: PropTypes.shape({
     available: PropTypes.number,
   }).isRequired,
+  companyCapabilities: PropTypes.shape({
+    allow_manage_recipient: PropTypes.bool,
+  }),
   companyName: PropTypes.string,
   history: PropTypes.shape({
     push: PropTypes.func,
@@ -102,6 +111,7 @@ Sidebar.defaultProps = {
   // This code will be used again in the future when ATLAS project implements the anticipation flow
   // More details in issue #1159
   // anticipationLimit: null,
+  companyCapabilities: {},
   companyName: '',
   recipientId: null,
   sessionId: '',
