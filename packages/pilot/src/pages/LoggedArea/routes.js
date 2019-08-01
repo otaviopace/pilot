@@ -65,6 +65,9 @@ export default {
     title: 'pages.withdraw.title',
   },
   recipients: {
+    hidden: ({
+      allow_manage_recipient: allowManageRecipient,
+    }) => (!allowManageRecipient),
     title: 'pages.recipients.title',
     path: '/recipients',
     component: Recipients,
