@@ -12,11 +12,11 @@ import {
   toString,
 } from 'ramda'
 import {
-  Card,
   CardContent,
   CardTitle,
 } from 'former-kit'
 
+import MetricCard from '../MetricCard'
 import List from '../MetricList/List'
 
 import sizePropValidation from './sizePropValidation'
@@ -89,17 +89,18 @@ const buildLegendItems = map(applySpec({
 const MetricChart = ({
   data,
   labelFormatter,
+  loading,
   showLegend,
   styles,
   title,
   type,
 }) => (
-  <Card>
+  <MetricCard loading={loading}>
     <CardTitle
       className={style.title}
       title={title}
     />
-    <CardContent>
+    <CardContent className={style.content}>
       {renderChart(
         {
           labelFormatter,
@@ -114,7 +115,7 @@ const MetricChart = ({
         <List items={buildLegendItems(data)} />
       </CardContent>
     )}
-  </Card>
+  </MetricCard>
 )
 
 MetricChart.propTypes = {
@@ -127,6 +128,7 @@ MetricChart.propTypes = {
     })
   ).isRequired,
   labelFormatter: PropTypes.func,
+  loading: PropTypes.bool,
   showLegend: PropTypes.bool,
   styles: PropTypes.shape({
     colors: PropTypes.object,
@@ -141,6 +143,7 @@ MetricChart.propTypes = {
 
 MetricChart.defaultProps = {
   labelFormatter: identity,
+  loading: false,
   showLegend: false,
 }
 

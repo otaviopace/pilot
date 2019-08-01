@@ -24,6 +24,7 @@ const MetricBarChart = ({
     barSize,
     colors,
     cursor,
+    fontSize,
     gridLines,
     height,
     width,
@@ -41,11 +42,17 @@ const MetricBarChart = ({
       <XAxis
         axisLine={false}
         dataKey="label"
+        tick={{
+          fontSize: fontSize || 12,
+        }}
         tickLine={false}
         tickMargin={10}
       />
       <YAxis
         axisLine={false}
+        tick={{
+          fontSize: fontSize || 12,
+        }}
         tickLine={false}
         tickMargin={10}
       />
@@ -79,6 +86,7 @@ MetricBarChart.propTypes = {
       fill: PropTypes.string.isRequired,
     }).isRequired,
     cursor: PropTypes.object,
+    fontSize: PropTypes.number,
     gridLines: PropTypes.string,
     height: sizePropValidation,
     width: sizePropValidation,
