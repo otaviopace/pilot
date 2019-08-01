@@ -27,6 +27,7 @@ import routes from './routes'
 // const getAnticipationLimit = path(['anticipation', 'limits', 'max'])
 const getRecipientId = path(['account', 'company', 'default_recipient_id', env])
 const getBalance = path(['account', 'balance'])
+const getCompanyCapabilities = path(['account', 'company', 'capabilities'])
 const getCompanyName = path(['account', 'company', 'name'])
 const getAccountSessionId = path(['account', 'sessionId'])
 const getTransfersPricing = path(['account', 'company', 'pricing', 'transfers'])
@@ -38,6 +39,7 @@ const mapStateToProps = applySpec({
   // More details in issue #1159
   // anticipationLimit: getAnticipationLimit,
   balance: getBalance,
+  companyCapabilities: getCompanyCapabilities,
   companyName: getCompanyName,
   recipientId: getRecipientId,
   sessionId: getAccountSessionId,
@@ -57,6 +59,7 @@ const LoggedArea = ({
   // More details in issue #1159
   // anticipationLimit,
   balance,
+  companyCapabilities,
   companyName,
   recipientId,
   sessionId,
@@ -71,6 +74,7 @@ const LoggedArea = ({
         // This code will be used again in the future when ATLAS project implements the anticipation flow
         // More details in issue #1159
         // anticipationLimit={anticipationLimit}
+        companyCapabilities={companyCapabilities}
         companyName={companyName}
         balance={balance}
         recipientId={recipientId}
@@ -113,6 +117,9 @@ LoggedArea.propTypes = {
   balance: PropTypes.shape({
     available: PropTypes.number,
   }),
+  companyCapabilities: PropTypes.shape({
+    allow_manage_recipient: PropTypes.bool,
+  }),
   companyName: PropTypes.string,
   recipientId: PropTypes.string,
   sessionId: PropTypes.string,
@@ -129,6 +136,7 @@ LoggedArea.defaultProps = {
   // More details in issue #1159
   // anticipationLimit: null,
   balance: {},
+  companyCapabilities: {},
   companyName: '',
   recipientId: null,
   sessionId: '',
