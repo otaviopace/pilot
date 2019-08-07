@@ -1,12 +1,12 @@
 import React from 'react'
 
 import Section from '../../Section'
-import MetricCard from '../../../src/components/MetricCard'
+import MetricIndicator from '../../../src/components/MetricIndicator'
 import Icon from './line-chart-icon.svg'
 
-const MetricCardExample = () => (
+const MetricIndicatorExample = () => (
   <Section>
-    <MetricCard
+    <MetricIndicator
       icon={<Icon />}
       title="Ticket médio"
       value="R$ 250,00"
@@ -14,4 +14,4 @@ const MetricCardExample = () => (
   </Section>
 )
 
-export default MetricCardExample
+export default MetricIndicatorExample
