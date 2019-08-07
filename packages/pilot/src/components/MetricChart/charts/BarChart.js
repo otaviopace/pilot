@@ -21,10 +21,10 @@ const MetricBarChart = ({
   data,
   labelFormatter,
   styles: {
-    barSize,
+    barSize = 20,
     colors,
     cursor,
-    fontSize,
+    fontSize = 12,
     gridLines,
     height,
     width,
@@ -43,7 +43,7 @@ const MetricBarChart = ({
         axisLine={false}
         dataKey="label"
         tick={{
-          fontSize: fontSize || 12,
+          fontSize,
         }}
         tickLine={false}
         tickMargin={10}
@@ -51,7 +51,7 @@ const MetricBarChart = ({
       <YAxis
         axisLine={false}
         tick={{
-          fontSize: fontSize || 12,
+          fontSize,
         }}
         tickLine={false}
         tickMargin={10}
@@ -62,7 +62,7 @@ const MetricBarChart = ({
         labelFormatter={labelFormatter}
       />
       <Bar
-        barSize={barSize || 20}
+        barSize={barSize}
         dataKey="value"
         fill={colors.fill}
       />
