@@ -15,7 +15,7 @@ import EventList from './EventList'
 import ExportData from './ExportData'
 import PaymentCards from './PaymentCards'
 import Property from './Property'
-import MetricCard from './MetricCard'
+import MetricIndicator from './MetricIndicator'
 import MetricList from './MetricList'
 import MetricChart from './MetricChart'
 import Operations from './Operations'
@@ -74,7 +74,7 @@ storiesOf('Components|Custom components', module)
   .add('Message with actions', () => <MessageActions />)
   .add('Password Input', () => <PasswordInput />)
   .add('TotalDisplay', () => <TotalDisplay />)
-  .add('MetricCard', () => <MetricCard />)
+  .add('MetricIndicator', () => <MetricIndicator />)
   .add('MetricList', () => <MetricList />)
   .add('MetricChart', () => <MetricChart />)
 
