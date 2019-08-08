@@ -1,0 +1,17 @@
+@import "former-kit-skin-pagarme/dist/styles/spacing.css";
+
+.content {
+  display: flex;
+}
+
+.label {
+  margin-right: var(--spacing-tiny);
+}
+
+.title {
+  white-space: nowrap;
+}
+
+.tooltip {
+  min-width: 100px;
+}
