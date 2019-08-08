@@ -16,11 +16,13 @@ import sizePropValidation from '../sizePropValidation'
 const MetricAreaChart = ({
   data,
   labelFormatter,
+  legend,
   styles: {
     colors,
     fontSize = 12,
     gridLines,
     height,
+    margin,
     width,
   },
 }) => (
@@ -28,7 +30,10 @@ const MetricAreaChart = ({
     height={height}
     width={width}
   >
-    <AreaChart data={data}>
+    <AreaChart
+      data={data}
+      margin={margin}
+    >
       <CartesianGrid
         strokeDasharray={gridLines || '3 3'}
         vertical={false}
@@ -44,6 +49,14 @@ const MetricAreaChart = ({
       />
       <YAxis
         axisLine={false}
+        label={{
+          angle: -90,
+          dy: 20,
+          fontSize: 14,
+          offset: 15,
+          position: 'insideBottomLeft',
+          value: legend,
+        }}
         tick={{
           fontSize,
         }}
@@ -82,6 +95,7 @@ MetricAreaChart.propTypes = {
     })
   ).isRequired,
   labelFormatter: PropTypes.func,
+  legend: PropTypes.string,
   styles: PropTypes.shape({
     colors: PropTypes.shape({
       dot: PropTypes.string.isRequired,
@@ -90,12 +104,19 @@ MetricAreaChart.propTypes = {
     }).isRequired,
     gridLines: PropTypes.string,
     height: sizePropValidation,
+    margin: PropTypes.shape({
+      bottom: PropTypes.number,
+      left: PropTypes.number,
+      right: PropTypes.number,
+      top: PropTypes.number,
+    }),
     width: sizePropValidation,
   }).isRequired,
 }
 
 MetricAreaChart.defaultProps = {
   labelFormatter: identity,
+  legend: null,
 }
 
 export default MetricAreaChart

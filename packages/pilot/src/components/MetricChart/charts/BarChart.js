@@ -20,6 +20,7 @@ const cursorProps = {
 const MetricBarChart = ({
   data,
   labelFormatter,
+  legend,
   styles: {
     barSize = 20,
     colors,
@@ -27,6 +28,7 @@ const MetricBarChart = ({
     fontSize = 12,
     gridLines,
     height,
+    margin,
     width,
   },
 }) => (
@@ -34,7 +36,10 @@ const MetricBarChart = ({
     height={height}
     width={width}
   >
-    <BarChart data={data}>
+    <BarChart
+      data={data}
+      margin={margin}
+    >
       <CartesianGrid
         strokeDasharray={gridLines || '3 3'}
         vertical={false}
@@ -50,6 +55,14 @@ const MetricBarChart = ({
       />
       <YAxis
         axisLine={false}
+        label={{
+          angle: -90,
+          dy: 20,
+          fontSize: 14,
+          offset: 15,
+          position: 'insideBottomLeft',
+          value: legend,
+        }}
         tick={{
           fontSize,
         }}
@@ -80,6 +93,7 @@ MetricBarChart.propTypes = {
     })
   ).isRequired,
   labelFormatter: PropTypes.func,
+  legend: PropTypes.string,
   styles: PropTypes.shape({
     barSize: PropTypes.number,
     colors: PropTypes.shape({
@@ -89,12 +103,19 @@ MetricBarChart.propTypes = {
     fontSize: PropTypes.number,
     gridLines: PropTypes.string,
     height: sizePropValidation,
+    margin: PropTypes.shape({
+      bottom: PropTypes.number,
+      left: PropTypes.number,
+      right: PropTypes.number,
+      top: PropTypes.number,
+    }),
     width: sizePropValidation,
   }).isRequired,
 }
 
 MetricBarChart.defaultProps = {
   labelFormatter: identity,
+  legend: null,
 }
 
 export default MetricBarChart

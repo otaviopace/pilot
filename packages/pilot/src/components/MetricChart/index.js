@@ -28,6 +28,7 @@ import MetricDonutChart from './charts/DonutChart'
 import style from './style.css'
 
 const renderChart = ({
+  chartLegend,
   labelFormatter,
   styles,
   type,
@@ -57,9 +58,10 @@ const renderChart = ({
 
   return ChartComponent && (
     <ChartComponent
-      styles={stylesCopy}
       data={data}
       labelFormatter={labelFormatter}
+      legend={chartLegend}
+      styles={stylesCopy}
     />
   )
 }
@@ -87,6 +89,7 @@ const buildLegendItems = map(applySpec({
 }))
 
 const MetricChart = ({
+  chartLegend,
   data,
   labelFormatter,
   loading,
@@ -103,6 +106,7 @@ const MetricChart = ({
     <CardContent className={style.content}>
       {renderChart(
         {
+          chartLegend,
           labelFormatter,
           styles,
           type,
@@ -119,6 +123,7 @@ const MetricChart = ({
 )
 
 MetricChart.propTypes = {
+  chartLegend: PropTypes.string,
   data: PropTypes.arrayOf(
     PropTypes.shape({
       color: PropTypes.string,
@@ -142,6 +147,7 @@ MetricChart.propTypes = {
 }
 
 MetricChart.defaultProps = {
+  chartLegend: null,
   labelFormatter: identity,
   loading: false,
   showLegend: false,
